@@ -1,0 +1,64 @@
+
+body { 
+    background: linear-gradient(to bottom right, #ffe2be, #d9ffbe) no-repeat fixed; 
+}
+
+.navbar {
+    background: rgba(213, 223, 73, 0.5);    
+}
+
+.navbar * {
+    color: rgb(56, 46, 0);
+}
+
+.navbar a:focus {
+    color: rgb(56, 46, 0);
+}
+
+.navbar a:hover {
+    color: rgb(116, 122, 19);
+}
+
+.loginpage {
+    background-color: rgba(169, 214, 139, 0.5); 
+}
+
+.contacts-container {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(247, 255, 135) rgba(250,250,250,0.3);
+}
+
+.contacts-item:hover:not(.activecontact) {
+    background-color: rgba(250, 255, 175, 0.5);
+}
+
+.activecontact {
+    background-color: rgba(247, 255, 135,1);
+    box-shadow: 0px 0px 8px rgba(247, 255, 135,1);
+}
+
+
+*::-webkit-scrollbar-thumb {
+    background-color: rgb(235, 245, 99);
+}
+
+.chatbox .card-body {
+    scrollbar-color: rgb(247, 255, 135) rgba(250,250,250,0.3);
+}
+
+.sendbutton {
+    background-color: rgb(235, 245, 99);
+}
+
+.sendbutton:hover {
+    background-color: rgb(214, 223, 87);
+}
+
+.right {
+    background-color: rgba(247, 255, 135, 0.8);
+}
+
+footer {
+    background-color: rgba(213, 223, 73, 0.5); 
+    color: rgb(56, 46, 0);
+}

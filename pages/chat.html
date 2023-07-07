@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    
+    <head>
+        <meta name="viewport" content="width=device-width, height=device-width, initial-scale=1">
+        <meta charset="utf-8">
+        <title>HelloFriend: Chat with Friends!</title>
+        <link rel="shortcut icon" type="image/png" href="/images/favicon.png"/>
+        <link href="vendor/bootstrap-5.3.0-dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+        <link href="css/styles.css" rel="stylesheet">
+        <link href="css/color-blue.css" id="colorsheet" rel="stylesheet">
+
+    </head>
+
+    <body>
+
+        <nav class="navbar navbar-expand d-flex flex-row-reverse">
+            <div class="container">
+
+                <span class="navbar-brand">HelloFriend<small class="d-none d-lg-inline"> Chat with Friends!</small></span>
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link text-nowrap" href="#" data-bs-toggle="modal" data-bs-target="#settingsmodal">Settings</a>
+                    </li>
+                    <li class="nav-item text-nowrap">
+                        <a class="nav-link" href="/logout">Sign out</a>
+                    </li>
+                    <li class="nav-item text-nowrap">
+                        <span><span style="font-size: 0.8em; opacity: 0.7; margin: 0px 6px 0px 15px">Hello,</span><span id="displayname"></span></span>
+                    </li>
+                    <li class="nav-item text-nowrap">
+                        <img class="nav-link" id="profilepicnav" style="max-width: 2.9em; border-radius: 100%;" src="" alt=" ">
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="container">
+
+            <div class="row">
+
+                <div class="col-xl-4 col-lg-5 col-md-12 contacts">
+                    <div class="contacts-header d-flex justify-content-between align-items-center">
+                        <h5>Friends</h5>
+                        <button data-bs-toggle="modal" data-bs-target="#contactmodal">
+                            <i class="bi bi-person-plus bi-8x"></i>
+                        </button>
+                    </div>
+                    <div id="contactscontainer" class="contacts-container">
+                        
+                        <div class="contacts-item d-none">
+                            <a href="#">
+                                <div class="d-flex justify-content-between">
+                                    <h5><img class="miniprofpic" src="" text-nowrap><span>Name</span></h5>
+                                    <small>01/01/2020</small>
+                                </div>
+                                <p class = "preview">Lorem ipsum sit amet</p>
+                            </a>
+                        </div>
+                        
+                    </div>
+                </div>
+
+                <div id="chatboxcontainer" class="col-xl-8 col-lg-7 col-md-12">
+                    
+                    <div class="card chatbox d-none d-lg-flex" id="empty-chatbox">
+                        <h1 class="defaultmsg">Click on a Friend to start chatting!</h1>
+                    </div>
+
+                    <div class="card chatbox d-none" id="chatbox" data-chatbox="">
+                        <div class="card-header d-flex justify-content-start align-items-center">
+                            <button class="btn m-8 d-inline d-lg-none" id="back"> &lt Back</button>
+                            <img class="miniprofpic" src="">
+                            <span text-nowrap>name</span>
+                        </div>
+                        <div class="msg d-none">
+                            <span>body</span> <br>
+                            <span class="msgfooter msgdate">date</span>
+                            <span class="msgfooter msgtime">time</span>
+                        </div>
+                        <div class="loading d-none">
+                            <span class="dot" style="top: 15%; left: 50%; opacity: 100%; animation-duration: 1s; animation-delay: 0.2s; animation-name: flash;"></span>
+                            <span class="dot" style="top: 15%; left: 47%; opacity: 100%; animation-duration: 1s; animation-delay: 0s; animation-name: flash;"></span>
+                            <span class="dot" style="top: 15%; left: 53%; opacity: 100%; animation-duration: 1s; animation-delay: 0.2s; animation-name: flash;"></span>
+                        </div>
+                        <div class="card-body">
+                        </div>
+                        <div class="card-footer">
+                            <div class="input-group">
+                                <input type="text" class="form-control msgtextbox" id="msgtextbox">
+                                <div class="input-group-append">                    
+                                    <button class="btn sendbutton" id="send"><i class="bi bi-telegram"></i></span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="modal fade" id="settingsmodal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+    
+                        <div class="modal-header">
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+    
+                        <div class="modal-body"> 
+                            
+                            <div id="settingsform" class="container">
+    
+                                <div class="d-flex flex-row justify-content-between">
+                                    <label for="settingsdisplayname">Display name</label>
+                                    <div class="align-self-end form-group">
+                                        <input class="form-control" id="settingsdisplayname" type="text">
+                                    </div>
+                                </div>
+
+                                <br>
+
+                                <div class="d-flex flex-row justify-content-between">
+                                    
+                                    <label for="settingspicupload">Avatar</label>
+                                    <div class="align-self-end form-group">
+                                        <form action="" id="settingspicuploadform">
+                                            <input name="avatar" class="settingspicinput" id="settingspicupload" type="file">
+                                            <label for="settingspicupload" class="btn settingspiclabel"><i class="bi bi-upload"></i> Choose image...</label>
+                                        </form>
+                                    </div>
+                                </div>
+
+                                <br>
+                                
+                                <div class="d-flex flex-row justify-content-between">
+                                    <label for="notifs">Notifications</label>
+                                    <div class="align-self-end form-check form-switch">
+                                        <input disabled class="form-check-input" id="notifs" type="checkbox"/>
+                                    </div>
+                                </div>
+
+                                <div class="my-3 d-flex flex-row justify-content-between align-items-center">
+                                    <span class="col-form-label">Color theme</span>
+                                    <div class="align-self-end">                                         
+                                        <input class="colorradio" type="radio" name="colors" style="background-color: rgb(81, 185, 255);" value="blue" checked>
+                                        <input class="colorradio" type="radio" name="colors" style="background-color: rgb(81, 255, 107);" value="green">
+                                        <input class="colorradio" type="radio" name="colors" style="background-color: rgb(247, 255, 135);" value="yellow">
+                                        <input class="colorradio" type="radio" name="colors" style="background-color: rgb(255, 145, 81);" value="orange">
+                                        <input class="colorradio" type="radio" name="colors" style="background-color: rgb(255, 81, 133);" value="red">
+                                    </div>
+                                </div>
+                                
+                                <div class="my-3 d-flex flex-row justify-content-end flex-wrap">
+                                    <button id="settingscancel" class="btn subtlebutton mx-1" type="button" data-bs-dismiss="modal">Cancel</span></button>
+                                    <button id="settingssubmit" class="btn fullbutton mx-1" type="button" data-dismiss="modal">Save changes</button>
+                                </div>
+    
+                            </div>
+                        </div>
+    
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="contactmodal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+    
+                        <div class="mx-2 modal-header">
+                            <h5 class="modal-title text-muted">New Friend</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+    
+                        <div class="modal-body"> 
+                            
+                            <form action="#" id="contactform" class="container w-75">
+                                
+                                <div class="d-flex flex-row justify-content-between">
+                                    <label for="contactemail">Email</label>
+                                    <div class="align-self-end form-group">
+                                        <input class="form-control" id="contactemail" type="email">
+                                    </div>
+                                </div>
+
+                                <div class="d-flex flex-row-reverse mt-2 addcontactmsg">
+                                    <div style="display: none" id="addcontactmsg"></div>
+                                </div>
+                                
+                                <div class="mt-2 mb-3 d-flex flex-row justify-content-end flex-wrap">
+                                    <button id="contactcancel" class="btn subtlebutton mx-1" type="button" data-bs-dismiss="modal">Cancel</span></button>
+                                    <button id="contactsubmit" class="btn fullbutton mx-1" type="button" data-dismiss="modal">Save changes</button>
+                                </div>
+    
+                            </form>
+                        </div>
+    
+                    </div>
+                </div>
+            </div>
+  
+        </div>
+
+        <footer class="footer">
+            <div class="container">
+                <span>Copyright © 2021</span>
+            </div>
+        </footer>
+        
+        <div>
+            <span class="dot" style="top: 2%; animation-duration: 28s; animation-delay: 2.4s; animation-name: moveright;"></span>
+            <span class="dot" style="top: 4%; animation-duration: 22s; animation-delay: 1.2s; animation-name: moveleft;"></span>
+            <span class="dot" style="top: 6%; animation-duration: 25s; animation-delay: 3.1s; animation-name: moveright;"></span>
+            <span class="dot" style="top: 12%; animation-duration: 19s; animation-delay: 3.0s; animation-name: moveright;"></span>
+            <span class="dot" style="top: 15%; animation-duration: 48s; animation-delay: 6.5s; animation-name: moveleft;"></span>
+            <span class="dot" style="top: 23%; animation-duration: 23s; animation-delay: 3.8s; animation-name: moveright;"></span>
+            <span class="dot" style="top: 26%; animation-duration: 26s; animation-delay: 1.3s; animation-name: moveleft;"></span>
+            <span class="dot" style="top: 18%; animation-duration: 24s; animation-delay: 6.2s; animation-name: moveright;"></span>
+            <span class="dot" style="top: 28%; animation-duration: 42s; animation-delay: 9.4s; animation-name: moveleft;"></span>
+            <span class="dot" style="top: 29%; animation-duration: 29s; animation-delay: 5.9s; animation-name: moveright;"></span>
+            <span class="dot" style="top: 32%; animation-duration: 35s; animation-delay: 2.2s; animation-name: moveleft;"></span>
+            <span class="dot" style="top: 34%; animation-duration: 49s; animation-delay: 3.1s; animation-name: moveleft;"></span>
+            <span class="dot" style="top: 37%; animation-duration: 26s; animation-delay: 6.8s; animation-name: moveright;"></span>
+            <span class="dot" style="top: 40%; animation-duration: 23s; animation-delay: 0.4s; animation-name: moveright;"></span>
+            <span class="dot" style="top: 43%; animation-duration: 25s; animation-delay: 7.2s; animation-name: moveleft;"></span>
+            <span class="dot" style="top: 49%; animation-duration: 19s; animation-delay: 2.9s; animation-name: moveleft;"></span>
+            <span class="dot" style="top: 51%; animation-duration: 32s; animation-delay: 1.5s; animation-name: moveright;"></span>
+            <span class="dot" style="top: 54%; animation-duration: 46s; animation-delay: 2.4s; animation-name: moveleft;"></span>
+            <span class="dot" style="top: 56%; animation-duration: 23s; animation-delay: 0.3s; animation-name: moveright;"></span>
+            <span class="dot" style="top: 60%; animation-duration: 33s; animation-delay: 4.6s; animation-name: moveleft;"></span>
+            <span class="dot" style="top: 62%; animation-duration: 31s; animation-delay: 2.2s; animation-name: moveleft;"></span>
+            <span class="dot" style="top: 65%; animation-duration: 28s; animation-delay: 7.6s; animation-name: moveright;"></span>
+            <span class="dot" style="top: 70%; animation-duration: 25s; animation-delay: 2.2s; animation-name: moveleft;"></span>
+            <span class="dot" style="top: 72%; animation-duration: 24s; animation-delay: 4.9s; animation-name: moveleft;"></span>
+            <span class="dot" style="top: 75%; animation-duration: 49s; animation-delay: 7.3s; animation-name: moveright;"></span>
+            <span class="dot" style="top: 77%; animation-duration: 29s; animation-delay: 1.7s; animation-name: moveleft;"></span>
+            <span class="dot" style="top: 82%; animation-duration: 32s; animation-delay: 0.4s; animation-name: moveright;"></span>
+            <span class="dot" style="top: 86%; animation-duration: 20s; animation-delay: 4.2s; animation-name: moveright;"></span>
+            <span class="dot" style="top: 89%; animation-duration: 40s; animation-delay: 2.5s; animation-name: moveleft;"></span>
+            <span class="dot" style="top: 93%; animation-duration: 23s; animation-delay: 3.2s; animation-name: moveright;"></span>
+            <span class="dot" style="top: 96%; animation-duration: 22s; animation-delay: 1.0s; animation-name: moveleft;"></span>
+        </div>
+
+        <script src="vendor/jquery/jquery-3.6.0.min.js"></script>
+        <script src="vendor/bootstrap-5.3.0-dist/js/bootstrap.bundle.min.js"></script>
+        <script src="js/chat.js"></script>
+
+    </body>
+
+</html>
